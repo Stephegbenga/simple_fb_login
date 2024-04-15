@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Website</title>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: '{your-app-id}',
+        cookie: true,
+        xfbml: true,
+        version: '{api-version}'
+      });
+
+      // Check user login status on page load
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+
+      FB.AppEvents.logPageView();
+    };
+
+    // This function handles the login button click and checks login status
+    function checkLoginState() {
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+    }
+
+    // This function is called with the login status response from FB.getLoginStatus
+    function statusChangeCallback(response) {
+      // Implement your logic here based on the response.status value
+      console.log('statusChangeCallback:', response);
+    }
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+</head>
+<body>
+  <h1>Welcome to my Simple Website!</h1>
+  <p>This is a basic website to demonstrate adding the Facebook SDK script.</p>
+
+  <section>
+    <h2>Your Content Here</h4>
+    <p>Add your own content, images, and links here.</p>
+  </section>
+
+  <button onclick="checkLoginState()">Login with Facebook</button>
+
+
+  <fb:login-button config_id="{config_id}" onlogin="checkLoginState();"></fb:login-button>
+
+</body>
+</html>
